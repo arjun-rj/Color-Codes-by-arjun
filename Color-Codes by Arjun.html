@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<style>
+@charset "utf-8";
+/* CSS Document */
+
+#div1{
+	display: inline-flex;
+	width: 95%;
+  	flex-wrap: wrap;
+	justify-content: center;
+	flex-direction: row;
+    align-items: center;
+  	background-color: DodgerBlue;
+	border: 1px solid #000000;	
+	margin:10px auto;
+	padding: 0px;
+}
+
+.spanidq1{
+	text-align:center;
+	border:0.5px solid  #ECEAEA;
+	width: 100px;
+	color:white;
+	font-weight:bold;
+	padding:70px;
+	margin: 0.5%;
+	flex: 1 1 0;
+	
+}
+.spanidq1:hover{
+	box-shadow: 3px 3px 10px 2px #f1f1f1;
+}
+
+@media screen and (max-width: 900px) {
+	.spanidq1{
+		padding:70px;
+		width: 4%;
+		text-align:center;
+	}
+}
+@media screen and (max-width: 400px) {
+	.spanidq1{
+		padding:70px;
+		width: 15%;
+		text-align:center;
+	}	
+}
+@media screen and (max-width: 350px) {
+	.spanidq1{
+		padding:70px;
+		width: 15%;
+		text-align:center;
+	}	
+}
+
+
+@charset "utf-8";
+/* CSS Document */
+
+* {
+	top: 0px;
+	left: 0px;
+	margin: 0px;
+	padding: 0px;
+	
+}
+/*-webkit- (Chrome, Safari, newer versions of Opera):*/
+body::-webkit-scrollbar { width: 0;}
+#container::-webkit-scrollbar { width: 0;}
+/*-moz- (Firefox):*/
+body { overflow: -moz-scrollbars-none; }
+/*-ms- (Internet Explorer +10):*/
+body { -ms-overflow-style: none; }
+
+html, body {
+	min-width: 99.%;
+	height: 99.65%;
+	overflow-x: hidden;
+	font-family: "Hoefler Text", "Liberation Serif", "Times New Roman", "serif";
+	font-size: 16px;	
+	margin:0 auto;
+}
+
+#container {
+	width: 99.%;
+	height: 100%;	
+}
+
+
+</style>
+	
+<title>responsive</title>
+	
+</head>
+<script src="spanjs.js">
+
+</script>
+	
+<body onLoad="mad()">
+	<div id="container">
+		<center>
+			<div id="div1" align="center">	
+			</div>
+	</center>
+	</div>
+<script>
+// JavaScript Document
+function colorGen() { 
+	"use strict"; 
+  var color1=Math.floor(Math.random() * 255) + 1;
+  var color2=Math.floor(Math.random() * 255) + 1;
+  var color3=Math.floor(Math.random() * 255) + 1;
+  var d='rgb('+ color1+ ',' +  color2 +',' + color3 +')';
+	return d;
+}
+
+function mad()
+{
+	"use strict";
+	var centerdata=document.getElementById("div1");
+	for(var i=0;i<255;i++)
+	{
+		var ele=document.createElement("div");
+		var colorcode=colorGen();
+		ele.textContent=colorcode;
+		ele.setAttribute("style","pointer:cursor;");
+		ele.addEventListener("mousedown", function() {getRGBcode(event,this.innerHTML);});
+		ele.style.backgroundColor= colorcode;
+		ele.classList.add("spanidq1");
+		centerdata.appendChild(ele);
+	}	
+}
+function getRGBcode(e,textvalue_rgb)
+{
+		var str="";
+	if(event.button==0)
+	{
+		str=textvalue_rgb;
+	}else if(event.button==2)
+	{
+		str=convertToHex_decimal(textvalue_rgb);
+		
+	}
+	var el = document.createElement('textarea');
+	
+	el.value = str;
+  	document.body.appendChild(el);
+  	el.select();
+  	document.execCommand('copy');
+  	document.body.removeChild(el);
+	alert(el.value);
+}
+function convertToHex_decimal(decimal_RGB_code)
+{
+  var str =decimal_RGB_code.toString() ;
+  var res = str.substring(str.indexOf("(")+1, str.lastIndexOf(")"));
+  var arraydata= res.split(",");
+  
+  var hexString="#";
+    for(var i=0;i<arraydata.length;i++)
+    {
+        hexString += parseInt(arraydata[i]).toString(16);
+		
+    }
+	
+	return hexString;
+}
+
+</script>
+</body>
+</html>
